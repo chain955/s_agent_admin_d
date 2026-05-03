@@ -94,8 +94,10 @@ function toneLabel(check: { value: string; tone: ServiceTone }): string {
 }
 
 function slug(title: string): string {
+  // Unicode-aware so Cyrillic titles ("Эмбеддинги", "LLM-бэкенд") survive the
+  // collapse — the ASCII-only regex would either truncate or fully erase them.
   return title
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
     .replace(/^-|-$/g, "");
 }

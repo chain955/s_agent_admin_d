@@ -3,6 +3,10 @@
 // than in `/src/lib`, they have no React dependency).
 
 const NUMBER_FMT = new Intl.NumberFormat("ru-RU");
+const SECONDS_FMT = new Intl.NumberFormat("ru-RU", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 export function formatCount(value: number | string): string {
   const n = typeof value === "string" ? Number(value) : value;
@@ -13,8 +17,11 @@ export function formatCount(value: number | string): string {
 export function formatMs(value: number | string): string {
   const n = typeof value === "string" ? Number(value) : value;
   if (!Number.isFinite(n)) return "—";
-  if (n >= 1000) return `${(n / 1000).toFixed(2)} с`;
-  return `${Math.round(n)} мс`;
+  // Keep the locale's decimal separator (comma in ru-RU) consistent with
+  // every other number on the dashboard. FRONTEND_CLAUDE.md §5 forbids raw
+  // `.toFixed`, so we always go through `Intl.NumberFormat`.
+  if (n >= 1000) return `${SECONDS_FMT.format(n / 1000)} с`;
+  return `${NUMBER_FMT.format(Math.round(n))} мс`;
 }
 
 // "2026-05-03" → "03 мая". Used as the X-axis tick label so 14 days fit
