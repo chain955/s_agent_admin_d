@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+src/api/schema.gen.ts
+src/routeTree.gen.ts
+pnpm-lock.yaml
+openapi.json
