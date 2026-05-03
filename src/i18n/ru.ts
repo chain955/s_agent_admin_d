@@ -4,6 +4,21 @@ export const ru = {
   "app.brand": "Sport Agent",
 
   "login.title": "Вход",
+  "login.subtitle": "Войдите учётной записью администратора.",
+
+  "auth.login": "Логин",
+  "auth.password": "Пароль",
+  "auth.submit": "Войти",
+  "auth.submitting": "Входим…",
+  "auth.logout": "Выйти",
+  "auth.error.required": "Поле обязательно для заполнения.",
+  "auth.error.invalid": "Неверный логин или пароль.",
+  "auth.error.network": "Не удалось связаться с сервером.",
+  "auth.error.generic": "Не удалось войти. Попробуйте ещё раз.",
+
+  "theme.toggle": "Переключить тему",
+  "theme.toDark": "Тёмная тема",
+  "theme.toLight": "Светлая тема",
 
   "admin.title": "Админ",
   "admin.nav.dashboard": "Дашборд",
