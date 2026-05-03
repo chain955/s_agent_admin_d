@@ -10,7 +10,7 @@ function loadDotenv(file) {
   if (!existsSync(file)) return {};
   const out = {};
   for (const line of readFileSync(file, "utf8").split(/\r?\n/)) {
-    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/i);
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/i);
     if (!m) continue;
     out[m[1]] = m[2].replace(/^['"]|['"]$/g, "");
   }
