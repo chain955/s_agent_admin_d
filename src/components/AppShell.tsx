@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { UserMenu } from "@/components/UserMenu";
 import { t } from "@/i18n";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +19,10 @@ export function AppShell({ title, nav, children }: Props) {
         <div className="flex items-center gap-3">
           <span className="font-semibold">{t("app.brand")}</span>
           <span className="text-sm text-muted-foreground">/ {title}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <UserMenu />
         </div>
       </header>
       <aside className="row-start-2 border-r bg-muted/30 p-3">
