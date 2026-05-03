@@ -46,7 +46,10 @@ describe("login form", () => {
     await user.type(screen.getByLabelText("Пароль"), "secret");
     await user.click(screen.getByRole("button", { name: "Войти" }));
 
-    await waitFor(() => expect(requests).toHaveLength(1));
+    // The first request is the login form's probe. The dashboard route mounts
+    // immediately after the redirect and fires its own health query, so the
+    // tail of the array is shared with downstream consumers.
+    await waitFor(() => expect(requests.length).toBeGreaterThanOrEqual(1));
     expect(requests[0]).toBe(`Basic ${btoa("admin:secret")}`);
     await waitFor(() => expect(authStore.get()?.login).toBe("admin"));
     expect(authStore.get()?.basic).toBe(btoa("admin:secret"));

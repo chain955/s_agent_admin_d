@@ -19,6 +19,16 @@ if (typeof window !== "undefined" && !window.matchMedia) {
   });
 }
 
+// Recharts' ResponsiveContainer relies on ResizeObserver; jsdom doesn't ship
+// one. The mock keeps the chart from throwing during mount; we don't assert
+// on rendered SVG geometry in component tests.
+class ResizeObserverMock {
+  observe(): void {}
+  unobserve(): void {}
+  disconnect(): void {}
+}
+vi.stubGlobal("ResizeObserver", ResizeObserverMock);
+
 beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
