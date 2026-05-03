@@ -4,7 +4,7 @@ import { UserMenu } from "@/components/UserMenu";
 import { t } from "@/i18n";
 import { cn } from "@/lib/utils";
 
-type NavItem = { to: string; label: string };
+type NavItem = { to: string; label: string; exact?: boolean };
 
 type Props = {
   title: string;
@@ -36,6 +36,7 @@ export function AppShell({ title, nav, children }: Props) {
                 "[&.active]:bg-accent [&.active]:text-accent-foreground",
               )}
               activeProps={{ className: "active" }}
+              activeOptions={item.exact ? { exact: true } : undefined}
             >
               {item.label}
             </Link>
