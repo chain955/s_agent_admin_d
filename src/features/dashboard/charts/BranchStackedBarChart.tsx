@@ -65,6 +65,10 @@ function buildSeries(data: RouterBranchSharePoint[]): {
   for (const point of data) {
     for (const branch of Object.keys(point.by_branch ?? {})) set.add(branch);
   }
+  // `date` is reserved as the X-axis key on every row; if the backend ever
+  // ships a router branch literally named `date` we drop it rather than let it
+  // overwrite the row's own date string and break `XAxis` / `formatDayLabel`.
+  set.delete("date");
   const branches = Array.from(set).sort();
   const rows = data.map<FlatRow>((point) => {
     const row: FlatRow = { date: point.date };
