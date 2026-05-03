@@ -7,8 +7,6 @@ export const ru = {
 
   "admin.title": "Админ",
   "admin.nav.dashboard": "Дашборд",
-  "admin.nav.sessions": "Сессии",
-  "admin.nav.config": "Конфигурация",
   "admin.dashboard.title": "Дашборд",
   "admin.dashboard.stub": "Содержимое появится в Stage F3.",
 

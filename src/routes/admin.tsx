@@ -8,14 +8,7 @@ export const Route = createFileRoute("/admin")({
 
 function AdminLayout() {
   return (
-    <AppShell
-      title={t("admin.title")}
-      nav={[
-        { to: "/admin", label: t("admin.nav.dashboard") },
-        { to: "/admin", label: t("admin.nav.sessions") },
-        { to: "/admin", label: t("admin.nav.config") },
-      ]}
-    >
+    <AppShell title={t("admin.title")} nav={[{ to: "/admin", label: t("admin.nav.dashboard") }]}>
       <Outlet />
     </AppShell>
   );
